@@ -10,7 +10,7 @@ namespace RecipeManager.DataAccess
 {
     public class QueryExecuter
     {
-        #region Constants
+        #region Fields
         private const string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=RecipeManagerDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         #endregion
 
