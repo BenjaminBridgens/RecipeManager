@@ -11,26 +11,41 @@ namespace RecipeManager.Entities
         #region Fields
         private string name;
         private List<Ingredient> ingredients;
-        private int recipeID;
+        private int persons;
+        private readonly int id;
         #endregion
 
         #region Constructors
-        public Recipe(string name, List<Ingredient> ingredints, int recipeID)
+        public Recipe(string name, List<Ingredient> ingredints,int persons)
         {
             Name = name;
             Ingredients = ingredients;
-            RecipeID = recipeID;
+            Persons = persons;
+        }
+        public Recipe(string name, List<Ingredient> ingredints, int persons, int id)
+        {
+            Name = name;
+            Ingredients = ingredients;
+            Persons = persons;
+            this.id = id;
         }
         #endregion
 
         #region Properties
-        public string Name { get => name; set => name = value; }
-        public int RecipeID { get => recipeID; set => recipeID = value; }
+        public string Name { get => name; set => name = value; }        
         public List<Ingredient> Ingredients { get => ingredients; set => ingredients = value; }
+        public int Persons { get => persons; set => persons = value; }
+        public int Id { get => id; }
         #endregion
 
         #region Methods
 
+
+
+        public override string ToString()
+        {
+            return $"{name} {}";
+        }
         #endregion
 
     }
