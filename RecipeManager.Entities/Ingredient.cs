@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace RecipeManager.Entities
 {
-    public class Recipe
-    {        
+    public class Ingredient
+    {
+
     }
 }
