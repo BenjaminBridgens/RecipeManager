@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ingredient.cs" />
+    <Compile Include="IngredientKind.cs" />
     <Compile Include="Recipe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

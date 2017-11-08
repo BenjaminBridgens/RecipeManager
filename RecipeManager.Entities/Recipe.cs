@@ -44,7 +44,7 @@ namespace RecipeManager.Entities
 
         public override string ToString()
         {
-            return $"{name} {}";
+            return $"{name} ";
         }
         #endregion
 
