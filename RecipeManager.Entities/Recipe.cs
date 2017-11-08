@@ -39,8 +39,16 @@ namespace RecipeManager.Entities
         #endregion
 
         #region Methods
+        public decimal GetPrice()
+        {
+            decimal price = 0;
 
-
+            foreach(Ingredient Ing in Ingredients )
+            {
+                price += Ing.Price;
+            }
+            return price;
+        }
 
         public override string ToString()
         {
