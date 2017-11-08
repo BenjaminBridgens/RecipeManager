@@ -8,8 +8,13 @@ using System.Data;
 
 namespace RecipeManager.DataAccess
 {
-    class DataRepository
+    public abstract class DataRepository
     {
+        protected QueryExecuter executer;
 
+        public DataRepository()
+        {
+            executer = new QueryExecuter();
+        }
     }
 }
