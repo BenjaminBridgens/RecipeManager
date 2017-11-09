@@ -11,7 +11,7 @@ namespace RecipeManager.DataAccess
     public class QueryExecuter
     {
         #region Fields
-        private const string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=RecipeManagerDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        private readonly string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=RecipeManagerDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         #endregion
 
         #region Constructors
@@ -30,13 +30,17 @@ namespace RecipeManager.DataAccess
         }
         #endregion
 
+        #region Properties
+        public string ConnectionString => connectionString;
+        #endregion
+
         #region Methods
         public DataSet Execute(string sql)
         {
             try
             {
                 DataSet resultSet = new DataSet();
-                using( SqlDataAdapter adapter = new SqlDataAdapter(new SqlCommand(sql, new SqlConnection(connectionString))) )
+                using( SqlDataAdapter adapter = new SqlDataAdapter(new SqlCommand(sql, new SqlConnection(ConnectionString))) )
                 {
                     adapter.Fill(resultSet);
                 }
