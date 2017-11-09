@@ -21,8 +21,23 @@ namespace RecipeManager.Tests
             Assert.IsNotNull(q);
         }
 
+        [TestMethod]
+        public void ExecutePasses()
+        {
+            // Arrange:
+            string sql = "SELECT TOP 1 (RecipeName) FROM Recipes";
+            QueryExecuter executer = new QueryExecuter();
+            int expectedRows = 1;
+            int actualRows;
+            DataSet resultSet = new DataSet();
 
+            // Act:
+            resultSet = executer.Execute(sql);
+            actualRows = resultSet.Tables[0].Rows.Count;
 
+            // Assert:
+            Assert.AreEqual(expectedRows, actualRows);
+        }
 
 
 
