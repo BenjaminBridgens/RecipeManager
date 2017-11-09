@@ -44,6 +44,7 @@
     <Compile Include="IngredientRepository.cs" />
     <Compile Include="QueryExecuter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecipeRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RecipeManager.Entities\RecipeManager.Entities.csproj">
