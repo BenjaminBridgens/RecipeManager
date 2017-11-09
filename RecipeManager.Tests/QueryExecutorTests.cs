@@ -9,8 +9,67 @@ namespace RecipeManager.Tests
     public class QueryExecutorTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void ConnectionTest()
         {
+            // Arrenge:
+            QueryExecuter q;
+
+            // Act:
+            q = new QueryExecuter();
+
+            // Assert:
+            Assert.IsNotNull(q);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
