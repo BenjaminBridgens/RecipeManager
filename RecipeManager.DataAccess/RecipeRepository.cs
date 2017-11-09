@@ -22,7 +22,7 @@ namespace RecipeManager.DataAccess
             {
                 int id = (int)row["RecipeId"];
                 string name = (string)row["RecipeName"];
-                List<Ingredient> ingList = ingRepo.GetIngredientsFor(idd: id);
+                List<Ingredient> ingList = ingRepo.GetIngredientsFor(id);
                 int persons = (int)row["Persons"];
                 Recipe r = new Recipe(name, ingList, persons, id);
 

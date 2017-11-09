@@ -31,24 +31,35 @@ namespace RecipeManager.DataAccess
             return allIngredients;
         }
 
-        public List<Ingredient> GetIngredientsFor(Recipe recipe = null, int idd = 0)
+        public List<Ingredient> GetIngredientsFor(int recipeId)
         {
-            //Determines which Parameter to use.
-            int iId;
-            if(recipe == null )
-            {
-                iId = idd;
-            }
-            else
-            {
-                iId = recipe.Id;
-            }
-
-            string sql = $"SELECT * FROM Ingredients WHERE IngredientId='{iId}'";
+            string sql = $"SELECT * FROM RecipesIngredients WHERE RecipeId={recipeId}";
             DataSet set = executer.Execute(sql);
-            List<Ingredient> ingredientList = new List<Ingredient>(0);
+            List<int> IngIdList = new List<int>(0);
             DataTable table = set.Tables[0];
             foreach(DataRow row in table.Rows )
+            {
+                int iId = (int)row["IngredientId"];
+                IngIdList.Add(iId);
+            }
+
+            string sqlIds = "";
+            int x = 0;
+            foreach(int i in IngIdList )
+            {
+                if(x != 0 )
+                {
+                    sqlIds += " OR ";
+                }
+                sqlIds += $"IngredientId={i}";
+                x++;
+            }
+            
+            string sql2 = $"SELECT * FROM Ingredients WHERE {sqlIds}";
+            DataSet set2 = executer.Execute(sql2);
+            List<Ingredient> ingredientList = new List<Ingredient>(0);
+            DataTable table2 = set2.Tables[0];
+            foreach(DataRow row in table2.Rows )
             {
                 int id = (int)row["IngredientId"];
                 string name = (string)row["IngredientName"];

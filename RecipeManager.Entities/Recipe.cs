@@ -16,13 +16,13 @@ namespace RecipeManager.Entities
         #endregion
 
         #region Constructors
-        public Recipe(string name, List<Ingredient> ingredints,int persons)
+        public Recipe(string name, List<Ingredient> ingredients,int persons)
         {
             Name = name;
-            Ingredients = ingredients;
+            Ingredients = this.ingredients;
             Persons = persons;
         }
-        public Recipe(string name, List<Ingredient> ingredints, int persons, int id)
+        public Recipe(string name, List<Ingredient> ingredients, int persons, int id)
         {
             Name = name;
             Ingredients = ingredients;

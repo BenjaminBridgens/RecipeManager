@@ -23,7 +23,8 @@
                              Height="271"
                              Margin="10,41,0,0"
                              VerticalAlignment="Top"
-                             Width="188">
+                             Width="188"
+                             SelectionChanged="listBoxRecipeList_SelectionChanged">
 
                     </ListBox>
                     <Label Content="Opskrifter:"

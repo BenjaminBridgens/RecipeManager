@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using RecipeManager.DataAccess;
+using RecipeManager.Entities;
 
 namespace RecipeManager.Gui
 {
@@ -20,9 +22,45 @@ namespace RecipeManager.Gui
     /// </summary>
     public partial class MainWindow: Window
     {
+        private IngredientRepository ingRepo;
+        private RecipeRepository recRepo;
+        List<Recipe> Recipes;
+        Recipe currentlySelected;
+
         public MainWindow()
         {
             InitializeComponent();
+            ingRepo = new IngredientRepository();
+            recRepo = new RecipeRepository();
+            RefreshRecipeData();
+
         }
+
+        private void listBoxRecipeList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            currentlySelected = listBoxRecipeList.SelectedItem as Recipe;
+            if(currentlySelected != null )
+            {
+                textBoxBoxPrice.Text = currentlySelected.GetPrice().ToString();
+                textBoxBoxPersons.Text = currentlySelected.Persons.ToString();
+            }
+        }
+
+        private void RefreshRecipeData()
+        {
+            Recipes = recRepo.GetAllRecipes();
+            listBoxRecipeList.ItemsSource = Recipes;
+        }
+
+
+
+
+
+
+
+
+
+
+
     }
 }

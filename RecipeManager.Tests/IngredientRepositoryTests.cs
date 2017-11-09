@@ -31,5 +31,29 @@ namespace RecipeManager.Tests
             }
             Assert.AreEqual(expected, actual);
         }
+
+        /*[TestMethod]
+        public void GetIngredientsForPasses()
+        {
+            // Arrange:
+            bool expected = true;
+            bool actual;
+            int id = 5;
+            IngredientRepository ingRepo = new IngredientRepository();
+
+            // Act:
+            List<Ingredient> ingredients = ingRepo.GetIngredientsFor(id);
+
+            // Assert:
+            if(ingredients.Count > 0 )
+            {
+                actual = true;
+            }
+            else
+            {
+                actual = false;
+            }
+            Assert.AreEqual(expected, actual);
+        }*/
     }
 }
