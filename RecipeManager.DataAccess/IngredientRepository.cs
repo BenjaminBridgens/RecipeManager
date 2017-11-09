@@ -31,7 +31,37 @@ namespace RecipeManager.DataAccess
             return allIngredients;
         }
 
+        public List<Ingredient> GetIngredientsFor(Recipe recipe = null, int idd = 0)
+        {
+            //Determines which Parameter to use.
+            int iId;
+            if(recipe == null )
+            {
+                iId = idd;
+            }
+            else
+            {
+                iId = recipe.Id;
+            }
 
+            string sql = $"SELECT * FROM Ingredients WHERE IngredientId='{iId}'";
+            DataSet set = executer.Execute(sql);
+            List<Ingredient> ingredientList = new List<Ingredient>(0);
+            DataTable table = set.Tables[0];
+            foreach(DataRow row in table.Rows )
+            {
+                int id = (int)row["IngredientId"];
+                string name = (string)row["IngredientName"];
+                decimal price = (decimal)row["Price"];
+                string kind = (string)row["IngredientType"];
+                IngredientKind iK = (IngredientKind)Enum.Parse(typeof(IngredientKind), ((string)row["IngredientType"]).Trim());
+                Ingredient i = new Ingredient(price, name, iK, id);
+
+                ingredientList.Add(i);
+            }
+
+            return ingredientList;
+        }
 
 
 
