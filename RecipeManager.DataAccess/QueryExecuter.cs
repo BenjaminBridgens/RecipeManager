@@ -29,18 +29,14 @@ namespace RecipeManager.DataAccess
             }
         }
         #endregion
-
-        #region Properties
-        public string ConnectionString => connectionString;
-        #endregion
-
+        
         #region Methods
         public DataSet Execute(string sql)
         {
             try
             {
                 DataSet resultSet = new DataSet();
-                using( SqlDataAdapter adapter = new SqlDataAdapter(new SqlCommand(sql, new SqlConnection(ConnectionString))) )
+                using( SqlDataAdapter adapter = new SqlDataAdapter(new SqlCommand(sql, new SqlConnection(connectionString))) )
                 {
                     adapter.Fill(resultSet);
                 }
