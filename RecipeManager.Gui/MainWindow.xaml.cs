@@ -43,6 +43,7 @@ namespace RecipeManager.Gui
             {
                 textBoxBoxPrice.Text = currentlySelected.GetPrice().ToString();
                 textBoxBoxPersons.Text = currentlySelected.Persons.ToString();
+                dataGridIngredientsInSelectedRecipe.ItemsSource = currentlySelected.Ingredients;
             }
         }
 
