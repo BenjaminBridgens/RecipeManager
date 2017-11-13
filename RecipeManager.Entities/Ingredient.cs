@@ -9,33 +9,33 @@ namespace RecipeManager.Entities
     public class Ingredient
     {
         #region Fields
-        private decimal price;
+        private readonly int id;
         private string name;
         private IngredientKind kind;
-        private readonly int id;
+        private decimal price;
         #endregion
 
         #region Constructors
+        public Ingredient(decimal price, string name, IngredientKind kind, int id)
+        {
+            this.id = id;
+            Name = name;
+            Kind = kind;
+            Price = price;
+        }
         public Ingredient(decimal price, string name, IngredientKind kind)
         {
             Price = price;
             Name = name;
             Kind = kind;
         }
-        public Ingredient(decimal price, string name, IngredientKind kind, int id)
-        {
-            Price = price;
-            Name = name;
-            Kind = kind;
-            this.id = id;
-        }
         #endregion
 
         #region Properties
-        public decimal Price { get => price; set => price = value; }
+        public int Id => id;
         public string Name { get => name; set => name = value; }
         public IngredientKind Kind { get => kind; set => kind = value; }
-        public int Id => id;
+        public decimal Price { get => price; set => price = value; }
         #endregion
 
         #region Methods
