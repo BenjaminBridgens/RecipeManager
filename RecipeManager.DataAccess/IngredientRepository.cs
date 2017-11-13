@@ -55,11 +55,11 @@ namespace RecipeManager.DataAccess
                 x++;
             }
             
-            string sql2 = $"SELECT * FROM Ingredients WHERE {sqlIds}";
-            DataSet set2 = executer.Execute(sql2);
+            sql = $"SELECT * FROM Ingredients WHERE {sqlIds}";
+            set = executer.Execute(sql);
             List<Ingredient> ingredientList = new List<Ingredient>(0);
-            DataTable table2 = set2.Tables[0];
-            foreach(DataRow row in table2.Rows )
+            table = set.Tables[0];
+            foreach(DataRow row in table.Rows )
             {
                 int id = (int)row["IngredientId"];
                 string name = (string)row["IngredientName"];
