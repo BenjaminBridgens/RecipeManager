@@ -32,7 +32,17 @@ namespace RecipeManager.DataAccess
             return recipes;
         }
 
+        public void SaveNew(Recipe recipe)
+        {
+            string sql = $"INSERT INTO Recipes (RecipeName, Persons) Values('{recipe.Name}',{recipe.Persons})";
+            executer.Execute(sql);
 
+            foreach( Ingredient ing in recipe.Ingredients )
+            {
+                sql = $"INSERT INTO RecipesIngredients (IngredientId, RecipeId) Values({ing.Id},(SELECT RecipeId FROM Recipes WHERE RecipeName = '{recipe.Name}'))";
+                executer.Execute(sql);
+            }
+        }
 
 
 
