@@ -19,7 +19,7 @@ namespace RecipeManager.Entities
         public Recipe(string name, List<Ingredient> ingredients,int persons)
         {
             Name = name;
-            Ingredients = this.ingredients;
+            Ingredients = ingredients;
             Persons = persons;
         }
         public Recipe(string name, List<Ingredient> ingredients, int persons, int id)
