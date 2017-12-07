@@ -25,7 +25,10 @@ namespace RecipeManager.Gui
         private IngredientRepository ingRepo;
         private RecipeRepository recRepo;
         List<Recipe> Recipes;
-        Recipe currentlySelected;
+        List<Ingredient> Ingredients;
+        List<Ingredient> RecipeIngredients;
+        Recipe currentRecipe;
+
 
         public MainWindow()
         {
@@ -33,18 +36,58 @@ namespace RecipeManager.Gui
             ingRepo = new IngredientRepository();
             recRepo = new RecipeRepository();
             RefreshRecipeData();
+            RefreshIngredientData();
+            RecipeIngredients = new List<Ingredient>(0);
 
         }
 
         private void listBoxRecipeList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            currentlySelected = listBoxRecipeList.SelectedItem as Recipe;
-            if(currentlySelected != null )
+            currentRecipe = listBoxRecipeList.SelectedItem as Recipe;
+            if(currentRecipe != null )
             {
-                textBoxBoxPrice.Text = currentlySelected.GetPrice().ToString();
-                textBoxBoxPersons.Text = currentlySelected.Persons.ToString();
-                dataGridIngredientsInSelectedRecipe.ItemsSource = currentlySelected.Ingredients;
+                textBoxBoxPrice.Text = currentRecipe.GetPrice().ToString();
+                textBoxBoxPersons.Text = currentRecipe.Persons.ToString();
+                dataGridIngredientsInSelectedRecipe.ItemsSource = currentRecipe.Ingredients;
             }
+        }
+        
+        private void buttonMoveItemRight_Click(object sender, RoutedEventArgs e)
+        {
+            Ingredient ing = dataGridAllIngredients.SelectedItem as Ingredient;
+
+            if( ing != null )
+            {
+                (bool exists, int x) = IngredientListCheck(RecipeIngredients, ing);
+                if( !exists )
+                {
+                    RecipeIngredients.Add(ing);
+                }
+                else
+                {
+                    MessageBox.Show("Ingredients can only appear once per recipe.", "The ingredient has already been added.", MessageBoxButton.OK, MessageBoxImage.Information);
+                } 
+            }
+            RefreshRecipeIngredientData();
+        }
+
+        private void buttonMoveItemLeft_Click(object sender, RoutedEventArgs e)
+        {
+            Ingredient ing = dataGridItemsInNewRecipe.SelectedItem as Ingredient;
+
+            if( ing != null )
+            {
+                (bool exists, int x) = IngredientListCheck(RecipeIngredients, ing);
+                if( exists )
+                {
+                    RecipeIngredients.Remove(ing);
+                }
+                else
+                {
+                    MessageBox.Show("the ingredient is not in the recipe", "the ingredient is not in the recipe", MessageBoxButton.OK, MessageBoxImage.Information);
+                } 
+            }
+            RefreshRecipeIngredientData();
         }
 
         private void RefreshRecipeData()
@@ -53,15 +96,32 @@ namespace RecipeManager.Gui
             listBoxRecipeList.ItemsSource = Recipes;
         }
 
+        private void RefreshIngredientData()
+        {
+            Ingredients = ingRepo.GetAllIngredients();
+            dataGridAllIngredients.ItemsSource = Ingredients;
+        }
 
+        private void RefreshRecipeIngredientData()
+        {
+            dataGridItemsInNewRecipe.ItemsSource = (null);
+            dataGridItemsInNewRecipe.ItemsSource = (RecipeIngredients);
+        }
 
-
-
-
-
-
-
-
-
+        private (bool, int) IngredientListCheck(List<Ingredient> ingList, Ingredient ingredient)
+        {
+            bool exists = false;
+            int Id = -1;
+            for(int i = 0; i < ingList.Count; i++)
+            {
+                if(ingList[i].Name == ingredient.Name )
+                {
+                    exists = true;
+                    Id = i;
+                }
+            }
+            return (exists, Id);
+        }
+        
     }
 }

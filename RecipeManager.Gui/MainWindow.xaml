@@ -134,14 +134,16 @@
                               Margin="10,103,0,0"
                               VerticalAlignment="Top"
                               Width="250"
-                              IsReadOnly="True" />
+                              IsReadOnly="True"
+                              SelectionMode="Single" />
                     <DataGrid x:Name="dataGridItemsInNewRecipe"
                               HorizontalAlignment="Left"
                               Height="179"
                               Margin="298,103,0,0"
                               VerticalAlignment="Top"
                               Width="272"
-                              IsReadOnly="True" />
+                              IsReadOnly="True"
+                              SelectionMode="Single" />
                     <Button x:Name="buttonAddNewRecipe"
                             Content="Tilføj"
                             HorizontalAlignment="Left"
@@ -171,13 +173,15 @@
                             Margin="265,180,0,0"
                             VerticalAlignment="Top"
                             Width="28"
-                            RenderTransformOrigin="0.519,1.521" />
+                            RenderTransformOrigin="0.519,1.521"
+                            Click="buttonMoveItemLeft_Click" />
                     <Button x:Name="buttonMoveItemRight"
                             Content="&gt;"
                             HorizontalAlignment="Left"
                             Margin="265,204,0,0"
                             VerticalAlignment="Top"
-                            Width="28" />
+                            Width="28"
+                            Click="buttonMoveItemRight_Click" />
                 </Grid>
             </TabItem>
         </TabControl>
