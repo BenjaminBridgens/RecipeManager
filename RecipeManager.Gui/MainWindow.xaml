@@ -76,7 +76,8 @@
                                      Text="TextBox"
                                      VerticalAlignment="Top"
                                      Width="221"
-                                     VerticalContentAlignment="Center" />
+                                     VerticalContentAlignment="Center"
+                                     IsEnabled="False" />
                             <TextBox x:Name="textBoxBoxPrice"
                                      HorizontalAlignment="Left"
                                      Height="24"
@@ -85,7 +86,8 @@
                                      Text="TextBox"
                                      VerticalAlignment="Top"
                                      Width="221"
-                                     VerticalContentAlignment="Center" />
+                                     VerticalContentAlignment="Center"
+                                     IsEnabled="False" />
                         </Grid>
                     </GroupBox>
                 </Grid>

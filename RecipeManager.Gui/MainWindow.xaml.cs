@@ -106,6 +106,9 @@ namespace RecipeManager.Gui
         {
             dataGridItemsInNewRecipe.ItemsSource = (null);
             dataGridItemsInNewRecipe.ItemsSource = (RecipeIngredients);
+
+            Recipe rec = new Recipe("k", RecipeIngredients, 0);
+            labelTotalPrice.Content = rec.GetPrice();
         }
 
         private (bool, int) IngredientListCheck(List<Ingredient> ingList, Ingredient ingredient)
